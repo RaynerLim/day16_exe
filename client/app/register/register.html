@@ -1,0 +1,180 @@
+<div ng-controller="RegCon as con">
+    <div>
+    <h1>Employee Registration</h1>
+    </div>
+    <form name="regForm" ng-submit="con.register()" autocomplete="off" novalidate>
+        <div class="form-group"  ng-class="{ 'has-error': regForm.empNo.$touched && regForm.empNo.$invalid }">
+
+            <label for="empNo">Employee No:</label>
+
+            <input type="number" id="empNo" name="empNo"
+                   class="form-control"
+                   ng-model="con.employee.empNo"
+                   required>
+
+            <div class="help-block" ng-messages="regForm.empNo.$error" ng-if="regForm.empNo.$touched">
+
+                <p ng-message="required">Employee Number Required</p>
+            </div>
+        </div>
+
+
+        <!-- Create  Field for First Name-->
+        <div class="form-group" ng-class="{ 'has-error': regForm.firstname.$touched && regForm.firstname.$invalid }">
+
+            <label for="firstname">First name:</label>
+
+            <!--Using the ng-model directive, we perform a 2-way data binding between the employee input field and
+            the ctrl.employee data model. By doing so, we automatically sync the view data and the data model data -->
+            <input type="text" id="firstname" name="firstname"
+                   class="form-control"
+                   ng-model="con.employee.firstname"
+                   ng-minlength="2"
+                   required>
+
+            <div class="help-block" ng-messages="regForm.firstname.$error" ng-if="regForm.firstname.$touched">
+                <p ng-message="minlength">First Name Too Short</p>
+                <p ng-message="required">First Name Required</p>
+            </div>
+        </div>
+
+
+        <!-- Create  Field for Last Name-->
+        <div class="form-group"  ng-class="{ 'has-error': regForm.lastname.$touched && regForm.lastname.$invalid }">
+
+            <label for="lastname">Last name:</label>
+
+            <!--Using the ng-model directive, we perform a 2-way data binding between the employee input field and
+            the ctrl.employee data model. By doing so, we automatically sync the view data and the data model data -->
+            <input type="text" id="lastname" name="lastname"
+                   class="form-control"
+                   ng-model="con.employee.lastname"
+                   ng-minlength=2
+                   required>
+            <div class="help-block" ng-messages="regForm.lastname.$error" ng-if="regForm.lastname.$touched">
+                <p ng-message="minlength">Last Name Too Short</p>
+                <p ng-message="required">Last Name Required</p>
+            </div>
+
+        </div>
+
+        <!-- Create Buttons to Submit Gender, where only one option can be submited-->
+        <div class="form-group"  ng-class="{ 'has-error': regForm.gender.$touched && regForm.gender.$invalid }">
+
+            <label>Gender:</label>
+
+            <!-- When working with radio buttons it is helpful to have a default value selected -->
+            <div class="radio">
+                <!--Using the ng-model directive, we perform a 2-way data binding between the employee input field
+                and the ctrl.employee data model. By doing so, we automatically sync the view data and the data model
+                data -->
+                <label for="male" class="radio-inline">
+                    <input type="radio" name="gender" id="male"
+                           value="M"
+                           ng-checked="true"
+                           ng-model="con.employee.gender"
+                    >Male
+                </label>
+
+                <label for="female" class="radio-inline">
+                    <input type="radio" name="gender" id="female"
+                           value="F"
+                           ng-model="con.employee.gender"
+                    >Female
+                </label>
+
+            </div>
+
+        </div>
+        <!-- Create Date Field to Submit Birthday -->
+        <div class="form-group"  ng-class="{ 'has-error': regForm.birthday.$touched && regForm.birthday.$invalid }">
+
+            <label for="birthday">Birthday:</label>
+
+            <!--Using the ng-model directive, we perform a 2-way data binding between the employee input field and
+            the ctrl.employee data model. By doing so, we automatically sync the view data and the data model data -->
+            <input type="date" id="birthday" name="birthday"
+                   class="form-control"
+                   ng-model="con.employee.birthday"
+                   required>
+            <div class="help-block" ng-messages="regForm.birthday.$error" ng-if="regForm.birthday.$touched">
+                <p ng-message="required">Birthday Required</p>
+            </div>
+        </div>
+
+        <!-- Create Date Field to Submit Hire Date -->
+        <div class="form-group"  ng-class="{ 'has-error': regForm.hiredate.$touched && regForm.hiredate.$invalid }">
+            <label for="hiredate">Hire date:</label>
+
+            <!--Using the ng-model directive, we perform a 2-way data binding between the employee input field and
+            the ctrl.employee data model. By doing so, we automatically sync the view data and the data model data -->
+            <input type="date" id="hiredate" name="hiredate"
+                   class="form-control"
+                   ng-model="con.employee.hiredate"
+                   required>
+            <div class="help-block" ng-messages="regForm.hiredate.$error" ng-if="regForm.hiredate.$touched">
+                <p ng-message="required">Hire Date Required</p>
+            </div>
+        </div>
+
+
+
+        <div class="form-group"  ng-class="{ 'has-error': regForm.phonenumber.$touched && regForm.phonenumber.$invalid }">
+            <label for="phonenumber">Phone Number:</label>
+
+            <!-- ng-pattern describes the form the input should take -->
+            <!-- regEx tells the compliler you will be describing the pattern using a regular expression -->
+            <!-- This regular expression checks for valid international phone numbers -->
+
+            <!--Using the ng-model directive, we perform a 2-way data binding between the employee input field and
+            the ctrl.employee data model. By doing so, we automatically sync the view data and the data model data -->
+            <input type="number" id="phonenumber" name="phonenumber"
+                   class="form-control"
+                   ng-model="con.employee.phonenumber"
+                   ng-pattern = '/^[0-9]{8,11}$/'
+                   required/>
+
+            <div class="help-block" ng-messages="regForm.phonenumber.$error" ng-if="regForm.phonenumber.$touched">
+                <p ng-message="pattern">Invalid Number</p>
+                <p ng-message="required">Phone Number Required</p>
+            </div>
+        </div>
+
+        <!--TODO: 1.1 Add dropdown box. Display department name.-->
+        <!--Dropdown box for list of departments-->
+        <div class="form-group"
+             ng-class="{ 'has-error': regForm.empDepartment.$touched && regForm.empDepartment.$invalid }">
+            <label for="empDepartment">Department:</label>
+
+              <input type="text" id="dept" name="dept"
+                   class="form-control"
+                   ng-model="con.employee.department"
+                   ng-minlength=2
+                   required>
+
+            <!--
+            <select id="empDepartment" name="empDepartment" class="form-control"
+                    ng-options="department.dept_no as department.dept_name for department in con.departments"
+                    ng-model="con.employee.department" required>
+            </select>
+            -->
+            <div class="help-block" ng-messages="regForm.empDepartment.$error" ng-if="regForm.empDepartment.$touched">
+                <p ng-message="required">Department Required</p>
+            </div>
+        </div>
+
+        <br/>
+        <!-- Creates button used to submit data -->
+        <div class="form-group">
+            <!-- The <button> type attribute specifies the behavior of the button. A button with type=submit submits
+             form data to the server -->
+
+            <!-- ng-disable removes the ability to submit the button -->
+            <!-- regForm.$invalid checks if the input is all valid -->
+            <button type="submit" class="btn-success form-control" ng-disabled="regForm.$invalid">
+                Register
+            </button>
+        </div>
+
+    </form>
+</div>

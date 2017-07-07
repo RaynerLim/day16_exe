@@ -1,0 +1,23 @@
+{
+  "name": "exe17",
+  "description": "",
+  "main": "client/app/client.js",
+  "authors": [
+    "kmng1 <kmng@alumni.nus.edu.sg>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "^1.6.5",
+    "angular-ui-router": "^1.0.5"
+  }
+}
