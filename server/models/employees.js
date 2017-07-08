@@ -1,4 +1,5 @@
 module.exports = function(conn, Sequelize) {
+    console.log("End Emd");
     var Employees=  conn.define('employees', {
         emp_no: {
             type: Sequelize.INTEGER(11),

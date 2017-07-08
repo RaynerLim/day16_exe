@@ -1,16 +1,16 @@
-(function(){
+(function() {
     angular
-        .module("ES")
-        .controller("RegCon", RegCon);
+        .module("ES")         
+        .controller("RegCon", RegCon);    
+   
+      RegCon.$inject = [ "$window", "EService"];
 
-    RegCon.$inject = ["EService"];
-
-    function RegCon($window, EService){
+    function RegCon( $window, EService) {
         var regCon = this;
 
         // Exposed data models ---------------------------------------------------------------------------------------
         // Creates an employee object that
-        // We expose the employee object by attaching it to the vm
+        // We expose the employee object by attaching it to the regCon
         // This will allow us apply two-way data-binding to this object by using ng-model in our view (i.e., index.html)
         regCon.employee = {
             empNo: "",
@@ -53,14 +53,14 @@
                 .insertEmp(regCon.employee)
                 .then(function (result) {
                     console.log("result " + JSON.stringify(result));
-                    $window.location.assign('/app/registration/thanks.html');
+                    $window.location.assign('/app/register/thanks.html');
                 })
                 .catch(function (err) {
                     console.log("error " + JSON.stringify(err));
-                    vm.status.message = err.data.name;
-                    vm.status.code = err.data.parent.errno;
+                    regCon.status.message = err.data.name;
+                    regCon.status.code = err.data.parent.errno;
                 });
 
         } // END function register()
-    } // END RegCtrl
+    } // END RegCon
 })();
