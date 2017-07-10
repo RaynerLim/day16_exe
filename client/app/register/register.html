@@ -145,19 +145,19 @@
         <div class="form-group"
              ng-class="{ 'has-error': regForm.empDepartment.$touched && regForm.empDepartment.$invalid }">
             <label for="empDepartment">Department:</label>
-
+            <!--
               <input type="text" id="dept" name="dept"
                    class="form-control"
                    ng-model="con.employee.department"
                    ng-minlength=2
                    required>
-
-            <!--
+                   -->
+            
             <select id="empDepartment" name="empDepartment" class="form-control"
-                    ng-options="department.dept_no as department.dept_name for department in con.departments"
+                    ng-options="departments.dept_name for departments in con.departments"
                     ng-model="con.employee.department" required>
             </select>
-            -->
+            
             <div class="help-block" ng-messages="regForm.empDepartment.$error" ng-if="regForm.empDepartment.$touched">
                 <p ng-message="required">Department Required</p>
             </div>

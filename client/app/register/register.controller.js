@@ -3,9 +3,9 @@
         .module("ES")         
         .controller("RegCon", RegCon);    
    
-      RegCon.$inject = [ "$window", "EService"];
+      RegCon.$inject = [ "$window", "EService", 'DService'];
 
-    function RegCon( $window, EService) {
+    function RegCon( $window, EService, DService) {
         var regCon = this;
 
         // Exposed data models ---------------------------------------------------------------------------------------
@@ -31,6 +31,21 @@
 
         regCon.register = register;
 
+        initDepartmentBox();
+
+        function initDepartmentBox(){
+            DService
+                .retrieveDept()
+                .then (function(results) {  
+                    console.log(JSON.stringify(results.data));
+                    regCon.departments = results.data;
+                })
+                .catch(function(err){
+                    console.log("error " + JSON.stringify(err));
+                    regCon.status.code = err.data.parent.errno;
+                });
+        }
+
           function register() {
             // Calls alert box and displays registration information
             alert("The registration information you sent are \n" + JSON.stringify(regCon.employee));
@@ -44,7 +59,7 @@
             console.log("Employee Birthday: " + regCon.employee.birthday);
             console.log("Employee Hire Date: " + regCon.employee.hiredate);
             console.log("Employee Phone Number: " + regCon.employee.phonenumber);
-            console.log("Employee Department name: " + regCon.employee.department);
+            console.log("Employee Department name: " + String(regCon.employee.department));
 
 
             // We call EmpService.insertEmp to handle registration of employee information. The data sent to this

@@ -24,6 +24,8 @@ var sequelize = new Sequelize(
 
 const Employees = sequelize.import('./models/employees');
 
+const Departments = sequelize.import('./models/departments');
+
 /*
 // Define Model Associations
 Department.hasMany(DeptManager, { foreignKey: 'dept_no' });
@@ -34,6 +36,7 @@ DeptManager.belongsTo(Employee, { foreignKey: 'emp_no' });
 // Exports Models
 module.exports = {
   // Loads model for employees table
-  Employees: Employees
+  Employees: Employees,
+  Departments: Departments
 
 };

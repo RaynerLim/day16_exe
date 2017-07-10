@@ -7,7 +7,7 @@
 
     // Dependency injection. Here we inject $http because we need this built-in service to communicate with the server
     // There are different ways to inject dependencies; $inject is minification safe
-    EService.$inject = ['$http'];
+    EService.$inject = ["$http"];
 
     // EmpService function declaration
     // Accepts the injected dependency as a parameter. We name it $http for consistency, but you may assign any name
@@ -26,10 +26,9 @@
         // insertEmp uses HTTP POST to send employee information to the server's /employees route
         // Parameters: employee information; Returns: Promise object
         function insertEmp(employee) {
-            console.log("aaaaaaaaaaaaaaaaaa")
             return $http({
-                method: 'POST'
-                , url: 'api/employees'
+                method: "POST"
+                , url: "api/employees"
                 , data: {emp: employee}
             });
         }
